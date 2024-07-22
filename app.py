@@ -10,7 +10,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 app.app_context().push()
 
-# Follow the sequence 
+# See sequence below 
 class User(UserMixin):
     def __init__(self, id, username, password):
         self.id = id
@@ -35,7 +35,7 @@ def get_user_by_id(user_id):
     else:
         return None
 
-# Callback to reload the user object headon
+# Callback to reload the user object 
 @login_manager.user_loader
 def load_user(user_id):
     return get_user_by_id(user_id)
