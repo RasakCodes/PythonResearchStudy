@@ -101,7 +101,6 @@ def login():
 
     return render_template('login.html', error=error)
 
-
 @app.route('/logout')
 #@login_required
 def logout():
@@ -134,18 +133,16 @@ def dashboard():
 
     return render_template('dashboard.html')
 
-
 @app.route('/dashboard/<int:website_id>/delete', methods=['POST'])
 #@login_required
 def delete(website_id):
-    # TODO 4: Implement the function for deleting websites from user profiles.
+    # TODO 4: Implement the functions for deleting websites from user profiles.
     conn = sqlite3.connect('database.db', timeout=60)
     c = conn.cursor()
     c.execute('DELETE FROM users WHERE id = ?', (website_id,))
     conn.commit()
     flash(' was successfully deleted!')
     return redirect(url_for("dashboard"))
-
 
 def create_tables():
     # Creates new tables in the database.db database if they do not already exist.
