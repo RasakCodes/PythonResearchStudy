@@ -40,7 +40,6 @@ def get_user_by_id(user_id):
 def load_user(user_id):
     return get_user_by_id(user_id)
 
-
 # Routes
 @app.route('/')
 def index():
@@ -76,7 +75,6 @@ def register():
 
     return render_template('register.html')
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # TODO 2: Implement the user login.
@@ -90,7 +88,7 @@ def login():
         elif not password:
             flash('Password is required!')
         else:
-            # connect to database head-on
+            # connect to database
             conn = sqlite3.connect('database.db', timeout=60)
             c = conn.cursor()
             c.execute("SELECT * FROM users WHERE username = :user AND password = :pass",
@@ -110,7 +108,6 @@ def logout():
     session.pop("user_id",None)
     logout_user()
     return redirect(url_for('index'))
-
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 #@login_required
